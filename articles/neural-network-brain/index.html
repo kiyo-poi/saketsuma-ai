@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ニューラルネットワークとは？ AIが脳のニューロンをまねた仕組みを、傘の例で解説｜酒のつまみになるAI</title>
+<meta name="description" content="AIの中身のニューラルネットワークという仕組みは、人間の脳の神経細胞（ニューロン）をまねて作られました。ニューロンの働きと、人工ニューロンが傘を持っていくかを判断して学習する例で、仕組みを順に説明します。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ニューラルネットワークとは？ AIが脳のニューロンをまねた仕組みを、傘の例で解説｜酒のつまみになるAI">
+<meta property="og:description" content="AIの中身のニューラルネットワークという仕組みは、人間の脳の神経細胞（ニューロン）をまねて作られました。ニューロンの働きと、人工ニューロンが傘を持っていくかを判断して学習する例で、仕組みを順に説明します。">
+<meta property="og:site_name" content="酒のつまみになるAI">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://kiyo-poi.github.io/saketsuma-ai/articles/neural-network-brain/">
+<meta property="og:url" content="https://kiyo-poi.github.io/saketsuma-ai/articles/neural-network-brain/">
+<meta property="og:image" content="https://kiyo-poi.github.io/saketsuma-ai/assets/thumb/neural-network-brain.jpg">
+<meta name="theme-color" content="#0e1a30">
+<link rel="icon" href="../../assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "ニューラルネットワークとは？ AIが脳のニューロンをまねた仕組みを、傘の例で解説", "description": "AIの中身のニューラルネットワークという仕組みは、人間の脳の神経細胞（ニューロン）をまねて作られました。ニューロンの働きと、人工ニューロンが傘を持っていくかを判断して学習する例で、仕組みを順に説明します。", "datePublished": "2026-11-03", "dateModified": "2026-11-13", "author": {"@type": "Organization", "name": "酒のつまみになるAI"}, "publisher": {"@type": "Organization", "name": "酒のつまみになるAI"}, "mainEntityOfPage": "https://kiyo-poi.github.io/saketsuma-ai/articles/neural-network-brain/"}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="../../"><img src="../../assets/icon-512.png" alt="" width="36" height="36"><span>酒のつまみになるAI</span></a></header>
+<main class="art">
+<div class="hero"><div class="wrap">
+<p class="chip">AIはどう動いてる？</p>
+<h1>ニューラルネットワークとは？ AIが脳のニューロンをまねた仕組みを、傘の例で解説</h1>
+<p class="meta"><span>公開 2026-11-03</span><span>更新 2026-11-13</span><span>約3分</span></p>
+</div></div>
+<article class="wrap body">
+<img class="thumb" src="../../assets/thumb/neural-network-brain.jpg" alt="" width="1200" height="675"><p class="lead">AIの中身のニューラルネットワークという仕組みは、人間の脳の神経細胞（ニューロン）をまねて作られました。ニューロンの働きと、人工ニューロンが傘を持っていくかを判断して学習する例で、仕組みを順に説明します。</p>
+<nav class="toc"><p>目次</p><ol><li><a href="#s1">人間の脳では、約860億個のニューロンがつながっている</a></li><li><a href="#s2">ニューロンは、合計が特定の強さを超えたときだけ信号を送る</a></li><li><a href="#s3">何度も同時に働くと、つながりが強くなる</a></li><li><a href="#s4">1943年、ニューロンの動きが数式になった</a></li><li><a href="#s5">例：人工ニューロンが、傘を持っていくかを判断する</a></li><li><a href="#s6">点数は「重み」、境目は「しきい値」</a></li><li><a href="#s7">人工ニューロンを何層にもつなぐと、ニューラルネットワークになる</a></li><li><a href="#s8">出典</a></li></ol></nav>
+<h2 id="s1">人間の脳では、約860億個のニューロンがつながっている</h2>
+<p>人間の脳では、ニューロンという神経細胞が、推定で約860億個、網目のようにつながっています。ニューロンは、信号を受け取って、隣のニューロンへ伝える細胞です。</p>
+<figure><img src="../../assets/fig/a1-neurons.jpg" alt="網目のようにつながったニューロンの3D画像" loading="lazy" width="800"></figure>
+<h2 id="s2">ニューロンは、合計が特定の強さを超えたときだけ信号を送る</h2>
+<p>ニューロンは、周りのニューロンから届いた信号を足し合わせます。そして、ニューロンは、合計が特定の強さを超えたときだけ、隣のニューロンへ信号を送ります。弱い信号が少し届いただけでは、ニューロンは信号を送りません。</p>
+<figure><img src="../../assets/fig/a1-fire.jpg" alt="届いた信号がたまり、境目を超えると送るニューロンの3D画像" loading="lazy" width="800"></figure>
+<h2 id="s3">何度も同時に働くと、つながりが強くなる</h2>
+<p>ニューロンどうしのつながりには、強いつながりと弱いつながりがあります。2つのニューロンが何度も同時に働くと、2つのニューロンのつながりが強くなり、信号が通りやすくなります。</p>
+<p>つながりが強くなることは、学習や記憶の仕組みの一つです。この考え方は、1949年にヘッブという研究者が唱えました。</p>
+<h2 id="s4">1943年、ニューロンの動きが数式になった</h2>
+<p>1943年、マカロックとピッツという研究者は、ニューロンの動きを数式で書けると考えました。マカロックとピッツの論文から生まれたのが、人工ニューロンです。</p>
+<h2 id="s5">例：人工ニューロンが、傘を持っていくかを判断する</h2>
+<p>人工ニューロンの動きを、傘を持っていくかどうかの判断で見てみます。数字は、説明のために仮に決めたものです。</p>
+<p>人工ニューロンは、3つの信号を受け取ります。信号には、それぞれ仮の点数をつけます。</p>
+<ul><li>雲が多い：0.6</li><li>天気予報の降水確率が高い：0.8</li><li>湿度が高い：0.3</li></ul>
+<p>人工ニューロンは、当てはまる信号の点数を足し合わせ、合計が1を超えたら「持っていく」という信号を出します。</p>
+<p>ある日、雲が多くて、湿度も高かったとします。合計は0.6と0.3で0.9です。0.9は1に届かないので、人工ニューロンは「持っていく」という信号を出しません。</p>
+<p>ところが、その日は雨が降りました。予測が外れたので、人工ニューロンは、予測と正解のずれが小さくなるように点数を少し直して、また予測します。予測と直しを何度も繰り返して、予測の精度を上げていくことを、AIの<strong>学習</strong>と言います。</p>
+<p>1943年の人工ニューロンは、重みが決まったままで、学習する仕組みはまだありませんでした。重みを直して学習する形は、1957年のパーセプトロンから始まりました。</p>
+<figure><img src="../../assets/fig/a1-umbrella.jpg" alt="雲・降水確率・湿度の3つの信号が、点数をつけて人工ニューロンに入る3D画像" loading="lazy" width="800"></figure>
+<h2 id="s6">点数は「重み」、境目は「しきい値」</h2>
+<p>AIでは、信号ごとの点数を<strong>重み</strong>、境目の1を<strong>しきい値</strong>と呼びます。重みは脳のつながりの強さに、しきい値はニューロンが信号を送る境目にあたります。</p>
+<figure><img src="../../assets/fig/a1-mapping.jpg" alt="脳のつながりの強さと人工ニューロンの重みを並べた3D画像" loading="lazy" width="800"></figure>
+<h2 id="s7">人工ニューロンを何層にもつなぐと、ニューラルネットワークになる</h2>
+<p>人工ニューロンを何層にもつなぐと、AIはもっと難しいことを判断できます。人工ニューロンを何層にもつないだ仕組みが、<strong>ニューラルネットワーク</strong>です。</p>
+<figure><img src="../../assets/fig/a1-network.jpg" alt="人工ニューロンを何層にもつないだニューラルネットワークの3D画像" loading="lazy" width="800"></figure>
+<p>ニューラルネットワークの研究には、2024年のノーベル物理学賞が贈られました。受賞したのは、ホップフィールドとヒントンの2人です。</p>
+<p>AIの正体は、脳の神経回路を計算に置き換えて、ものすごい数つなげたニューラルネットワークです。ニューラルネットワークが文章や画像を作る仕組みは<a href="../../articles/ai-generate-text-image/">AIはどうやって文章や画像を作る？</a>で、本物の脳との違いは<a href="../../articles/ai-vs-human-brain/">AIと人間の脳の違い</a>で説明しています。</p>
+<h2 id="s8">出典</h2>
+<ul><li>ニューロンの数（推定値）：<a href="https://pubmed.ncbi.nlm.nih.gov/19226510/" rel="noopener">Azevedo ほか（2009）</a>（2026-11-03 確認）</li><li>合計が境目に届くと信号を送る：<a href="https://qbi.uq.edu.au/brain-basics/brain/brain-physiology/action-potentials-and-synapses" rel="noopener">Queensland Brain Institute</a>、<a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/12-4-the-action-potential" rel="noopener">OpenStax</a>（2026-11-03 確認）</li><li>ヘッブの説（1949年）：<a href="https://www.nobelprize.org/uploads/2024/11/advanced-physicsprize2024-3.pdf" rel="noopener">ノーベル財団の解説</a>（2026-11-03 確認）</li><li>1943年の人工ニューロン：<a href="https://doi.org/10.1007/BF02478259" rel="noopener">McCulloch &amp; Pitts（1943）</a>（2026-11-05 確認）</li><li>誤差が小さくなる方向へ重みを直して学習する：<a href="https://www.ibm.com/think/topics/neural-networks" rel="noopener">IBM</a>（2026-11-05 確認）</li><li>1957年のパーセプトロン：<a href="https://news.cornell.edu/stories/2019/09/professors-perceptron-paved-way-ai-60-years-too-soon" rel="noopener">コーネル大学</a>（2026-11-05 確認）</li><li>2024年のノーベル物理学賞：<a href="https://www.nobelprize.org/prizes/physics/2024/press-release/" rel="noopener">ノーベル財団の発表</a>（2026-11-03 確認）</li></ul>
+
+<p class="series">この記事は、短尺動画シリーズ「酒のつまみになるAI」の回を、読み物として書き直したものです。</p>
+</article>
+<nav class="wrap pns"><a class="pn next" href="../../articles/ai-vs-human-brain/"><small>次の記事</small>AIと人間の脳の違いは？ 電気の使い方・覚え方・部品の3つを数字で比べる</a></nav>
+</main>
+<footer class="foot">
+<nav><a href="../../">記事一覧</a><a href="../../about/">このサイトについて</a><a href="../../privacy/">プライバシーポリシー</a></nav>
+<p>© 酒のつまみになるAI</p>
+</footer>
+</body>
+</html>

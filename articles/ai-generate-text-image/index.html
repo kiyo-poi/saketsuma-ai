@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>生成AIはどうやって文章や画像を作る？ 次の言葉を当てる仕組みと、拡散モデルの仕組み｜酒のつまみになるAI</title>
+<meta name="description" content="ChatGPTのような文章のAIは、次の言葉を1つずつ当てて答えを書きます。Stable Diffusionのような画像のAIは、砂嵐のような画像からノイズを少しずつ取り除いて絵を作ります。公開されているAIを実際に動かした結果で、2つの仕組みを説明します。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成AIはどうやって文章や画像を作る？ 次の言葉を当てる仕組みと、拡散モデルの仕組み｜酒のつまみになるAI">
+<meta property="og:description" content="ChatGPTのような文章のAIは、次の言葉を1つずつ当てて答えを書きます。Stable Diffusionのような画像のAIは、砂嵐のような画像からノイズを少しずつ取り除いて絵を作ります。公開されているAIを実際に動かした結果で、2つの仕組みを説明します。">
+<meta property="og:site_name" content="酒のつまみになるAI">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://kiyo-poi.github.io/saketsuma-ai/articles/ai-generate-text-image/">
+<meta property="og:url" content="https://kiyo-poi.github.io/saketsuma-ai/articles/ai-generate-text-image/">
+<meta property="og:image" content="https://kiyo-poi.github.io/saketsuma-ai/assets/icon-512.png">
+<meta name="theme-color" content="#0e1a30">
+<link rel="icon" href="../../assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "生成AIはどうやって文章や画像を作る？ 次の言葉を当てる仕組みと、拡散モデルの仕組み", "description": "ChatGPTのような文章のAIは、次の言葉を1つずつ当てて答えを書きます。Stable Diffusionのような画像のAIは、砂嵐のような画像からノイズを少しずつ取り除いて絵を作ります。公開されているAIを実際に動かした結果で、2つの仕組みを説明します。", "datePublished": "2026-11-13", "dateModified": "2026-11-13", "author": {"@type": "Organization", "name": "酒のつまみになるAI"}, "publisher": {"@type": "Organization", "name": "酒のつまみになるAI"}, "mainEntityOfPage": "https://kiyo-poi.github.io/saketsuma-ai/articles/ai-generate-text-image/"}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="../../"><img src="../../assets/icon-512.png" alt="" width="36" height="36"><span>酒のつまみになるAI</span></a></header>
+<main class="art">
+<div class="hero"><div class="wrap">
+<p class="chip">AIはどう動いてる？</p>
+<h1>生成AIはどうやって文章や画像を作る？ 次の言葉を当てる仕組みと、拡散モデルの仕組み</h1>
+<p class="meta"><span>公開 2026-11-13</span><span>約4分</span></p>
+</div></div>
+<article class="wrap body">
+<p class="lead">ChatGPTのような文章のAIは、次の言葉を1つずつ当てて答えを書きます。Stable Diffusionのような画像のAIは、砂嵐のような画像からノイズを少しずつ取り除いて絵を作ります。公開されているAIを実際に動かした結果で、2つの仕組みを説明します。</p>
+<nav class="toc"><p>目次</p><ol><li><a href="#s1">文章のAIは、次に来る言葉の確率を計算する</a></li><li><a href="#s2">選んだ言葉をつなげて、もう一度読み直す</a></li><li><a href="#s3">画像のAIは、砂嵐のような画像から始める</a></li><li><a href="#s4">画像のAIは、ノイズを足す逆の作業で練習する</a></li><li><a href="#s5">どちらのAIも「当てる」ことを繰り返している</a></li><li><a href="#s6">出典と実演の条件</a></li></ol></nav>
+<p>ChatGPTは、答えの文章を最初に全部考えてから書いているわけではありません。ChatGPTは、次の言葉を1つずつ当てながら、答えを書いています。</p>
+<p>文章や画像を作るAIの中身は、人工ニューロンを何層にもつないだニューラルネットワークです（仕組みは<a href="../../articles/neural-network-brain/">ニューラルネットワークとは</a>で説明しています）。</p>
+<h2 id="s1">文章のAIは、次に来る言葉の確率を計算する</h2>
+<p>公開されている日本語のAI（Sarashina2.2 0.5B instruct）を実際に動かして、「日本で一番高い山は?」と聞きました。ニューラルネットワークは、文を読んで、次に来る言葉の候補ごとに、確率を計算します。</p>
+<p>AIが「日本で一番高い山は」まで書いたとき、「富士山」の確率は約64%でした。ほかの候補の確率は、どれも約5%以下でした。ChatGPTのような文章を作るAIは、確率の高い候補から言葉を1つ選んで、文の後ろにつなげます。</p>
+<figure><img src="../../assets/fig/a8-fuji.jpg" alt="「日本で一番高い山は」の次の候補の確率。富士山が64%、ほかは5%以下" loading="lazy" width="800"></figure>
+<aside class="note"><p class="note-t">数字について</p><p>64%は、Sarashina2.2 0.5B instruct を、毎回いちばん確率の高い候補を選ぶ設定で動かした結果です。ChatGPT の中の数字ではありません。また、AIは実際には、言葉より細かい「トークン」という単位で予測しています。</p></aside>
+<h2 id="s2">選んだ言葉をつなげて、もう一度読み直す</h2>
+<p>文章のAIは、選んだ言葉をつなげた文をもう一度読んで、次の言葉の確率を計算します。AIは、言葉を選んでは読み直す作業を、答えが終わるまで繰り返します。</p>
+<p>ChatGPTの画面に文字が少しずつ出てくるのは、ChatGPTが答えを1つずつ書いているからです。</p>
+<figure><img src="../../assets/fig/a8-repeat.jpg" alt="質問への答えが、少しずつ画面に出てくる様子" loading="lazy" width="800"></figure>
+<p>ニューラルネットワークが次の言葉を当てられるのは、学習のときに、大量の文章で、文の続きを当てる練習をしたからです。予測が外れるたびに、AIは重みを少し直しました（くわしくは<a href="../../articles/ai-training/">AIの学習とは</a>）。</p>
+<h2 id="s3">画像のAIは、砂嵐のような画像から始める</h2>
+<p>Stable Diffusionという画像を作るAIは、拡散モデルという方法を使っています。拡散モデルは、テレビの砂嵐のような、ざらざらの点だけの画像から始めます。</p>
+<p>ニューラルネットワークは、「夕焼けの海」という意味の英語の指示（sunset over the ocean）を読んで、砂嵐の中のどの点がノイズなのかを予測し、ノイズを少しだけ取り除きます。ノイズを少し取り除くと、画像の中に、ぼんやりした色のかたまりが現れます。</p>
+<figure><img src="../../assets/fig/a8-noise.jpg" alt="英語の指示を読んで、砂嵐の画像からノイズを少し取り除く様子" loading="lazy" width="800"></figure>
+<p>ニューラルネットワークは、ノイズを取り除く作業を何十回も繰り返して、くっきりした画像に仕上げます。今回は50回繰り返しました。</p>
+<figure><img src="../../assets/fig/a8-clear.jpg" alt="ノイズを取り除く作業を50回繰り返してできた、夕焼けの海の画像" loading="lazy" width="800"></figure>
+<h2 id="s4">画像のAIは、ノイズを足す逆の作業で練習する</h2>
+<p>ニューラルネットワークがノイズを取り除けるのは、学習のときに、逆の作業を練習したからです。学習では、きれいな写真に、ノイズを少しずつ足して、砂嵐にしていきます。そして、ニューラルネットワークは、写真に足されたノイズを当てる練習を、大量の写真と説明文で繰り返します。</p>
+<figure><img src="../../assets/fig/a8-train.jpg" alt="きれいな写真にノイズを少しずつ足していく様子" loading="lazy" width="800"></figure>
+<h2 id="s5">どちらのAIも「当てる」ことを繰り返している</h2>
+<p>文章を作るAIは、次の言葉を当てて、1つずつつなげています。画像を作るAIは、砂嵐からノイズを少しずつ消しています。どちらのAIも、ニューラルネットワークが「当てる」ことを何度も繰り返して、答えや画像を作っています。</p>
+<figure><img src="../../assets/fig/a8-both.jpg" alt="文章のAIは次の言葉をつなげ、画像のAIは砂嵐からノイズを消していく様子を並べた画像" loading="lazy" width="800"></figure>
+<p>ChatGPTのようなAIが次の言葉を選ぶ仕組みは、<a href="../../articles/chatgpt-next-word/">ChatGPTが文章を作る仕組み</a>でも説明しています。</p>
+<h2 id="s6">出典と実演の条件</h2>
+<ul><li>文章のAIが次の言葉（トークン）を1つずつ予測すること、学習で続きを当てる練習をすること：OpenAI ヘルプ「How ChatGPT and our foundation models are developed」</li><li>「富士山」約64%（63.9%）、次の候補は5.1%・5.1%・4.5%：<a href="https://huggingface.co/sbintuitions/sarashina2.2-0.5b-instruct-v0.1" rel="noopener">Sarashina2.2 0.5B instruct</a>（SB Intuitions、MIT ライセンス）を、毎回いちばん確率の高い候補を選ぶ設定で動かした結果</li><li>拡散モデル：<a href="https://arxiv.org/abs/2006.11239" rel="noopener">Ho ほか（2020）</a></li><li>画像：<a href="https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5" rel="noopener">Stable Diffusion v1.5</a>（CreativeML OpenRAIL-M ライセンス）で作った画像。50回は diffusers の初期値。途中の画像は、各回の途中の数字を画像に直したもの。ノイズを足す画像は、できた画像に同じ計算でノイズを足したもの</li><li>Stable Diffusion は、実際には写真を縮めた数字の上で作業します（説明では省きました）</li></ul>
+
+<p class="series">この記事は、短尺動画シリーズ「酒のつまみになるAI」の回を、読み物として書き直したものです。</p>
+</article>
+<nav class="wrap pns"><a class="pn prev" href="../../articles/ai-vs-human-brain/"><small>前の記事</small>AIと人間の脳の違いは？ 電気の使い方・覚え方・部品の3つを数字で比べる</a><a class="pn next" href="../../articles/ai-training/"><small>次の記事</small>AIの学習とは何をしているのか 手元で小さなAIを学習させて、重み（パラメータ）の動きを見た</a></nav>
+</main>
+<footer class="foot">
+<nav><a href="../../">記事一覧</a><a href="../../about/">このサイトについて</a><a href="../../privacy/">プライバシーポリシー</a></nav>
+<p>© 酒のつまみになるAI</p>
+</footer>
+</body>
+</html>

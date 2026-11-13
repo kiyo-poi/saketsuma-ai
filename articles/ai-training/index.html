@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AIの学習とは何をしているのか 手元で小さなAIを学習させて、重み（パラメータ）の動きを見た｜酒のつまみになるAI</title>
+<meta name="description" content="AIの学習は、本を読んで覚えることではありません。AIの中に並んだ大量のつまみ（重み）を、少しずつ回す作業です。つまみが1万1635個ある小さなAIを手元のパソコンで学習させ、本物の数字で学習の中身を追いました。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AIの学習とは何をしているのか 手元で小さなAIを学習させて、重み（パラメータ）の動きを見た｜酒のつまみになるAI">
+<meta property="og:description" content="AIの学習は、本を読んで覚えることではありません。AIの中に並んだ大量のつまみ（重み）を、少しずつ回す作業です。つまみが1万1635個ある小さなAIを手元のパソコンで学習させ、本物の数字で学習の中身を追いました。">
+<meta property="og:site_name" content="酒のつまみになるAI">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://kiyo-poi.github.io/saketsuma-ai/articles/ai-training/">
+<meta property="og:url" content="https://kiyo-poi.github.io/saketsuma-ai/articles/ai-training/">
+<meta property="og:image" content="https://kiyo-poi.github.io/saketsuma-ai/assets/thumb/ai-training.jpg">
+<meta name="theme-color" content="#0e1a30">
+<link rel="icon" href="../../assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AIの学習とは何をしているのか 手元で小さなAIを学習させて、重み（パラメータ）の動きを見た", "description": "AIの学習は、本を読んで覚えることではありません。AIの中に並んだ大量のつまみ（重み）を、少しずつ回す作業です。つまみが1万1635個ある小さなAIを手元のパソコンで学習させ、本物の数字で学習の中身を追いました。", "datePublished": "2026-11-03", "dateModified": "2026-11-13", "author": {"@type": "Organization", "name": "酒のつまみになるAI"}, "publisher": {"@type": "Organization", "name": "酒のつまみになるAI"}, "mainEntityOfPage": "https://kiyo-poi.github.io/saketsuma-ai/articles/ai-training/"}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="../../"><img src="../../assets/icon-512.png" alt="" width="36" height="36"><span>酒のつまみになるAI</span></a></header>
+<main class="art">
+<div class="hero"><div class="wrap">
+<p class="chip">AIはどう動いてる？</p>
+<h1>AIの学習とは何をしているのか 手元で小さなAIを学習させて、重み（パラメータ）の動きを見た</h1>
+<p class="meta"><span>公開 2026-11-03</span><span>更新 2026-11-13</span><span>約4分</span></p>
+</div></div>
+<article class="wrap body">
+<img class="thumb" src="../../assets/thumb/ai-training.jpg" alt="" width="1200" height="675"><p class="lead">AIの学習は、本を読んで覚えることではありません。AIの中に並んだ大量のつまみ（重み）を、少しずつ回す作業です。つまみが1万1635個ある小さなAIを手元のパソコンで学習させ、本物の数字で学習の中身を追いました。</p>
+<nav class="toc"><p>目次</p><ol><li><a href="#s1">AIの中には、音量つまみのような数字が並んでいる</a></li><li><a href="#s2">学習前の小さなAIは、でたらめな文字を書いた</a></li><li><a href="#s3">続きの1文字を隠して、当てさせる</a></li><li><a href="#s4">外れが小さくなる方向に、つまみを少しずつ動かす</a></li><li><a href="#s5">4000回繰り返すと、外れは4.26から0.55に下がった</a></li><li><a href="#s6">小さなAIの作文は、回数ごとに読める文になった</a></li><li><a href="#s7">人は、文法のルールを1つも書き込んでいない</a></li><li><a href="#s8">学習後のAIの中に残っているのは、調整された数字</a></li><li><a href="#s9">大きなAIも、続きを当てさせてつまみを動かす</a></li><li><a href="#s10">出典と実演の条件</a></li></ol></nav>
+<h2 id="s1">AIの中には、音量つまみのような数字が並んでいる</h2>
+<p>AIの中には、<strong>重み</strong>と呼ばれる、音量つまみのような数字が大量に並んでいます。重みは、パラメータとも呼ばれます（厳密には、パラメータは重みとバイアスを合わせたものです）。</p>
+<p>重みが何を表すのかは、<a href="../../articles/neural-network-brain/">ニューラルネットワークとは</a>で説明しています。</p>
+<p>つまみが1万1635個ある小さなAIを、手元のパソコンで学習させました。小さなAIは、前の6文字を見て、次の1文字を当てる、自作のニューラルネットワークです。</p>
+<figure><img src="../../assets/fig/a3-knobs.jpg" alt="小さなAIの中の、つまみ（重み）が並んだ様子" loading="lazy" width="800"></figure>
+<h2 id="s2">学習前の小さなAIは、でたらめな文字を書いた</h2>
+<p>学習前の小さなAIは、「とりあえず」の続きに、「とせこざにえーせ」とでたらめな文字を書きました。</p>
+<h2 id="s3">続きの1文字を隠して、当てさせる</h2>
+<p>学習のプログラムは、居酒屋の短い文537文から、続きの1文字を隠して、小さなAIに当てさせます。537文は、自分で作った表を組み合わせて作った文で、既存の作品は写していません。</p>
+<p>学習前の小さなAIは、「かんぱ」の次の文字を「び」と予想しました。「び」の確率は3.3%で、正解の「い」は、上位5つの候補に入っていませんでした。</p>
+<figure><img src="../../assets/fig/a3-kanpa.jpg" alt="「かんぱ」の次の文字の予想。学習前は「び」が3.3%で一番高い" loading="lazy" width="800"></figure>
+<h2 id="s4">外れが小さくなる方向に、つまみを少しずつ動かす</h2>
+<p>学習のプログラムは、予想の外れの大きさを計算して、外れが小さくなる方向に、つまみをまとめて少しずつ動かします。1回の学習では、32問をまとめて採点します。</p>
+<p>1回目の学習でつまみが動いた量は、最大でも0.003でした。1万1635個のつまみのうち、1万1283個が動き、352個は動きませんでした。</p>
+<figure><img src="../../assets/fig/a3-nudge.jpg" alt="1回目の学習で、つまみが少しだけ動いた様子" loading="lazy" width="800"></figure>
+<h2 id="s5">4000回繰り返すと、外れは4.26から0.55に下がった</h2>
+<p>学習のプログラムは、当てさせて直す作業を、20秒ほどで4000回繰り返しました。実際に測った時間は、21〜24秒でした。外れの値は、4.26から0.55まで下がりました。</p>
+<figure><img src="../../assets/fig/a3-loss.jpg" alt="学習4000回で、外れの値が4.26から0.55に下がった様子" loading="lazy" width="800"></figure>
+<h2 id="s6">小さなAIの作文は、回数ごとに読める文になった</h2>
+<p>小さなAIは、「とりあえず」の続きに、次のように書きました。</p>
+<ul><li>100回のあと：「う が はい」</li><li>300回のあと：「おひや と おひや を たのんだ」</li><li>4000回のあと：「おひや と もつに で」</li></ul>
+<figure><img src="../../assets/fig/a3-writing.jpg" alt="学習の回数ごとの、小さなAIの作文" loading="lazy" width="800"></figure>
+<p>4000回のあとの「とりあえず おひや と もつに で」は、学習用の537文にもある文です。一方で、小さなAIは、学習用の537文にない「かんぱい の まえ に さしみ を たのもう」という文も書きました。</p>
+<h2 id="s7">人は、文法のルールを1つも書き込んでいない</h2>
+<p>人は、小さなAIに、文法のルールを1つも書き込んでいません。人が入れたのは、文章と、当てさせて直す手順だけです。</p>
+<h2 id="s8">学習後のAIの中に残っているのは、調整された数字</h2>
+<p>学習が終わった小さなAIの中に、元の文章が本棚のように並んでいるわけではありません。小さなAIの中に残っているのは、調整された数字です。</p>
+<p>ただし、小さなAIは、学習用と同じ文を書くこともあります。書き出しを決めずに200回書かせたところ、48回は学習用と同じ文でした。</p>
+<figure><img src="../../assets/fig/a3-numbers.jpg" alt="学習後の小さなAIの中に残った、調整された数字" loading="lazy" width="800"></figure>
+<h2 id="s9">大きなAIも、続きを当てさせてつまみを動かす</h2>
+<p>文章を作る大きなAIの学習も、続きを当てさせて、つまみを少しずつ動かす作業です。大きなモデルには、つまみが1000億個を超えるものもあります。</p>
+<ul><li>GPT-3：1750億個</li><li>Llama 3.1 405B：4050億個</li><li>DeepSeek-V3：約6710億個</li></ul>
+<p>人がダウンロードするモデルのファイルの中身も、ほとんどが重みの数字です。たとえば DeepSeek-V3 は、数字のファイルが163個、合計でおよそ689GBあります（2026年11月12日時点の表示）。</p>
+<figure><img src="../../assets/fig/a3-big.jpg" alt="DeepSeek-V3 の数字のファイル163個、合計およそ689GB" loading="lazy" width="800"></figure>
+<p>AIの学習とは、大量のつまみを少しずつ調整する、地道な作業です。学習を終えたAIが文章をどう作るのかは、<a href="../../articles/ai-generate-text-image/">AIはどうやって文章や画像を作る？</a>で説明しています。</p>
+<h2 id="s10">出典と実演の条件</h2>
+<ul><li>重み（パラメータ）：<a href="https://developers.google.com/machine-learning/glossary/fundamentals" rel="noopener">Google Machine Learning Glossary</a>（2026-11-12 確認）</li><li>続きを当てさせ、外れが小さくなる方向に少しずつ動かす：<a href="https://developers.google.com/machine-learning/crash-course/llm/transformers" rel="noopener">Google Machine Learning Crash Course（LLM）</a>、<a href="https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent" rel="noopener">同（勾配降下法）</a>（2026-11-12 確認）</li><li>パラメータの数：<a href="https://arxiv.org/abs/2005.14165" rel="noopener">GPT-3</a>、<a href="https://huggingface.co/meta-llama/Llama-3.1-405B" rel="noopener">Llama 3.1 405B</a>、<a href="https://huggingface.co/deepseek-ai/DeepSeek-V3" rel="noopener">DeepSeek-V3</a>（2026-11-12 確認）</li><li>DeepSeek-V3 のファイル：<a href="https://huggingface.co/deepseek-ai/DeepSeek-V3/tree/main" rel="noopener">ファイル一覧</a>、<a href="https://huggingface.co/docs/safetensors/index" rel="noopener">safetensors の説明</a>（2026-11-12 確認）</li><li>学習したAIが学習用の文章をそのまま出すことがある研究：<a href="https://arxiv.org/abs/2012.07805" rel="noopener">Carlini ほか（2020）</a>、<a href="https://arxiv.org/abs/2311.17035" rel="noopener">Nasr ほか（2023）</a></li><li>小さなAI：2026年11月12日に手元の Mac で学習させた自作のニューラルネットワーク。つまみ 11,635個、学習用の文 537文、1回32問、4,000回。記事の数字はすべて学習の記録の値</li></ul>
+
+<p class="series">この記事は、短尺動画シリーズ「酒のつまみになるAI」の回を、読み物として書き直したものです。</p>
+</article>
+<nav class="wrap pns"><a class="pn prev" href="../../articles/ai-generate-text-image/"><small>前の記事</small>生成AIはどうやって文章や画像を作る？ 次の言葉を当てる仕組みと、拡散モデルの仕組み</a><a class="pn next" href="../../articles/chatgpt-next-word/"><small>次の記事</small>ChatGPTはどうやって文章を作る？ 正体は「次の言葉当てゲーム」</a></nav>
+</main>
+<footer class="foot">
+<nav><a href="../../">記事一覧</a><a href="../../about/">このサイトについて</a><a href="../../privacy/">プライバシーポリシー</a></nav>
+<p>© 酒のつまみになるAI</p>
+</footer>
+</body>
+</html>

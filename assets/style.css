@@ -1,0 +1,120 @@
+/* 色は YouTube のアイコン（紺の地、赤ワイン、ウイスキー、グラスのクリーム）に合わせる */
+:root {
+  --navy: #0e1a30;
+  --navy-2: #182a4a;
+  --wine: #a3192b;
+  --amber: #e0952a;
+  --cream: #f5ead2;
+  --paper: #fdfbf6;
+  --ink: #1d2330;
+  --sub: #5b6273;
+  --line: #e6e0d3;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif;
+  font-size: 17px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+a { color: var(--wine); }
+img { max-width: 100%; height: auto; }
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 16px; }
+
+/* ヘッダー */
+.top { background: var(--navy); border-bottom: 3px solid var(--wine); }
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  max-width: 720px; margin: 0 auto; padding: 10px 16px;
+  color: var(--cream); text-decoration: none; font-weight: 700; letter-spacing: .04em;
+}
+.brand img { border-radius: 50%; display: block; }
+
+/* 見出しの帯 */
+.hero { background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%); color: var(--cream); padding: 28px 0 30px; }
+.hero h1 { margin: 0; font-size: 1.55rem; line-height: 1.45; letter-spacing: .02em; }
+.hero.home { padding: 40px 0 44px; }
+.hero.home h1 { font-size: 1.7rem; }
+.hero.home p { margin: 14px 0 0; color: #d9cfb8; font-size: .95rem; }
+.chip {
+  display: inline-block; margin: 0 0 12px; padding: 2px 12px;
+  background: var(--amber); color: var(--navy); border-radius: 999px;
+  font-size: .8rem; font-weight: 700; line-height: 1.8;
+}
+.meta { margin: 14px 0 0; font-size: .82rem; color: #c9bfa8; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+
+/* 本文 */
+.body { padding-top: 24px; padding-bottom: 8px; }
+.body h1 { font-size: 1.4rem; }
+.lead { font-size: 1.02rem; color: var(--ink); padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.body h2 {
+  margin: 2.4em 0 .8em; padding: 0 0 0 14px; font-size: 1.28rem; line-height: 1.5;
+  border-left: 5px solid var(--wine);
+}
+.body h3 { margin: 1.8em 0 .5em; font-size: 1.08rem; }
+.body p { margin: 0 0 1.2em; }
+.body ul, .body ol { padding-left: 1.4em; margin: 0 0 1.2em; }
+.body li { margin: .25em 0; }
+.body strong { background: linear-gradient(transparent 62%, rgba(224, 149, 42, .35) 62%); font-weight: 700; }
+figure { margin: 1.6em 0; }
+figure img { display: block; width: 100%; border-radius: 12px; background: #18130f; }
+figcaption { margin-top: 8px; font-size: .85rem; color: var(--sub); line-height: 1.7; }
+.note { margin: 1.6em 0; padding: 16px 18px; background: #f4efe4; border-radius: 10px; border-left: 4px solid var(--amber); }
+.note > :last-child { margin-bottom: 0; }
+.note-t { font-weight: 700; margin: 0 0 .4em !important; }
+.ad {
+  display: inline-block; margin: 0 0 16px; padding: 2px 10px;
+  border: 1px solid var(--sub); border-radius: 4px; font-size: .8rem; color: var(--sub);
+}
+.toc { margin: 22px 0 8px; padding: 14px 18px; background: #fff; border: 1px solid var(--line); border-radius: 10px; }
+.toc p { margin: 0 0 4px; font-weight: 700; font-size: .9rem; color: var(--navy); }
+.toc ol { margin: 0; padding-left: 1.4em; font-size: .93rem; line-height: 1.8; }
+.toc a { color: var(--ink); text-decoration: none; }
+.video { padding: 14px 18px; background: var(--navy); color: var(--cream); border-radius: 10px; }
+.video a { color: var(--amber); font-weight: 700; margin-left: 4px; }
+.series { margin-top: 2.4em !important; padding-top: 16px; border-top: 1px solid var(--line); font-size: .85rem; color: var(--sub); }
+
+/* 前後の記事 */
+.pns { display: grid; gap: 10px; padding-top: 8px; padding-bottom: 32px; }
+.pn {
+  display: block; padding: 12px 16px; background: #fff; border: 1px solid var(--line); border-radius: 10px;
+  color: var(--ink); text-decoration: none; font-weight: 700; line-height: 1.6;
+}
+.pn small { display: block; font-weight: 400; font-size: .78rem; color: var(--wine); }
+
+/* トップの記事一覧 */
+.cat { padding: 28px 0 8px; }
+.cat h2 { margin: 0 0 14px; font-size: 1.15rem; color: var(--navy); display: flex; align-items: center; gap: 10px; }
+.cat h2::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--wine); flex: none; }
+.cards { display: grid; gap: 12px; }
+.card {
+  display: block; padding: 16px 18px; background: #fff; border: 1px solid var(--line); border-radius: 12px;
+  color: var(--ink); text-decoration: none; box-shadow: 0 1px 0 rgba(14, 26, 48, .04);
+}
+.card:hover { border-color: var(--amber); }
+.card-t { display: block; font-weight: 700; font-size: 1.05rem; line-height: 1.55; color: var(--navy); }
+.card-d { display: block; margin-top: 6px; font-size: .9rem; line-height: 1.75; color: var(--sub); }
+.card-m { display: block; margin-top: 8px; font-size: .78rem; color: var(--wine); }
+
+.thumb { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; margin: 0 0 18px; background: var(--navy); }
+.card.has-i { padding-top: 0; overflow: hidden; }
+.card-i { display: block; width: calc(100% + 36px); max-width: none; margin: 0 -18px 14px; aspect-ratio: 16 / 9; object-fit: cover; background: var(--navy); }
+
+/* フッター */
+.foot { margin-top: 24px; background: var(--navy); color: #c9bfa8; padding: 22px 16px 30px; text-align: center; font-size: .85rem; }
+.foot nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin-bottom: 8px; }
+.foot a { color: var(--cream); text-decoration: none; }
+.foot p { margin: 0; }
+
+@media (min-width: 720px) {
+  body { font-size: 17.5px; }
+  .hero h1 { font-size: 1.9rem; }
+  .hero.home h1 { font-size: 2.1rem; }
+  .pns { grid-template-columns: 1fr 1fr; }
+  .pn.next { grid-column: 2; text-align: right; }
+}
